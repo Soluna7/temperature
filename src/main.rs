@@ -1,4 +1,3 @@
-use std::i32;
 use std::io;
 
 const PRECISION: usize = 2;
@@ -66,9 +65,6 @@ fn main() {
             }
         };
 
-        println!("NUMBER MAKER:");
-        number_maker(input.clone());
-
         let temp: f64 = match input.trim().parse() {
             Ok(num) => num,
             Err(_) => {
@@ -83,26 +79,28 @@ fn main() {
     }
 }
 
-fn number_maker(input: String) {
-    let mut decimals: u8 = 0;
-    let mut num: f64 = if input.contains("-") { -0.0 } else { 0.0 };
-    for i in 0..input.len() - 1 {
-        println!("Loop {i}: {num}");
-        if input.chars().nth(i).expect("Char error").is_digit(10) == true {
-            let digit = input.chars().nth(i).expect("Not a digit").to_digit(10);
-            num = num * 10.0 + digit as f64;
-            match decimals {
-                0 => continue,
-                _ => decimals += 1,
-            }
-            continue;
-        } else if input.chars().nth(i) == Some('.') && decimals == 0 {
-            decimals = 1;
-            continue;
-        } else {
-            continue;
-        }
-    }
-    num = num / 10_u64.pow(decimals.into()).into();
-    println!("{num}");
-}
+//fn number_maker(input: String) {
+//     let mut decimals: u32 = 0;
+//     let mut num: f64 = if input.contains("-") { -0.0 } else { 0.0 };
+//     for i in 0..input.len() - 1 {
+//         println!("Loop {i}: {num}");
+//         if input.chars().nth(i).expect("Char error").is_digit(10) == true {
+//             let digit = input.chars().nth(i).expect("Not a digit").to_digit(10);
+//             let digit = digit.unwrap_or(0) + 1;
+//             num = num * 10.0 + digit as f64;
+//             match decimals {
+//                 0 => continue,
+//                 _ => decimals += 1,
+//             }
+//             continue;
+//         } else if input.chars().nth(i) == Some('.') && decimals == 0 {
+//             decimals = 1;
+//             continue;
+//         } else {
+//             continue;
+//         }
+//     }
+//     let decimals = 10_u64.pow(decimals);
+//     num = num / decimals as f64;
+//     println!("{num}");
+// }
